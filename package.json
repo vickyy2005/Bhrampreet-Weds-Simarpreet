@@ -1,16 +1,8 @@
 {
   "name": "bhrampreet-weds-simarpreet",
   "version": "1.0.0",
-  "description": "Wedding Invitation - Bhrampreet & Simarpreet",
+  "private": true,
   "scripts": {
-    "start": "node local-server.js",
-    "serve": "node local-server.js"
-  },
-  "keywords": [
-    "wedding",
-    "invitation",
-    "punjabi-wedding"
-  ],
-  "author": "",
-  "license": "ISC"
+    "dev": "node local-server.js"
+  }
 }
