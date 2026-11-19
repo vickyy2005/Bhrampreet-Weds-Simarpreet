@@ -1,11 +1,10 @@
 {
-  "name": "punjab-da-invitatio",
+  "name": "bhrampreet-weds-simarpreet",
   "version": "1.0.0",
-  "description": "Wedding Invitation - Arshdeep & Dilmeet",
-  "main": "server.js",
+  "description": "Wedding Invitation - Bhrampreet & Simarpreet",
   "scripts": {
-    "start": "node server.js",
-    "serve": "node server.js"
+    "start": "node local-server.js",
+    "serve": "node local-server.js"
   },
   "keywords": [
     "wedding",

@@ -14,7 +14,7 @@ Punjab da invitatio/
 ├── app.js                  # Interactive logic (scratch card, countdown, music, gallery, RSVP, wishes)
 ├── wishes.json             # Local data storage for guest wishes
 ├── server.py               # Built-in lightweight Python server (serves site & /api/wishes)
-├── server.js               # Built-in lightweight Node.js server (serves site & /api/wishes)
+├── local-server.js               # Built-in lightweight Node.js server (serves site & /api/wishes)
 ├── package.json            # Node configuration (npm start)
 └── assets/                 # All high-resolution media & imagery (~65 MB total)
     ├── wedding-song.mp3        # Background music track
@@ -38,7 +38,7 @@ No npm installations required (uses native Node.js HTTP module):
 ```bash
 npm start
 # or
-node server.js
+node local-server.js
 ```
 Open [http://localhost:8000](http://localhost:8000) in your browser.
 

@@ -156,12 +156,12 @@ function showWishes(){
  previous.onclick=()=>{wishIndex=(wishIndex-1+allWishes.length)%allWishes.length;showWishes()};next.onclick=()=>{wishIndex=(wishIndex+1)%allWishes.length;showWishes()};
  counter.textContent=String(wishIndex+1).padStart(2,'0')+' / '+String(allWishes.length).padStart(2,'0');counter.setAttribute('aria-live','polite');nav.append(previous,counter,next);host.append(stack,nav);
 }
-async function loadWishes(){try{const response=await fetch('/api/wishes');if(!response.ok)throw Error();const data=await response.json();allWishes=data.wishes;wishIndex=Math.min(wishIndex,Math.max(0,allWishes.length-1));showWishes()}catch{$('#saved-wishes').textContent='Wishes could not load. Please refresh to try again.'}}
+async function loadWishes(){try{const response=await fetch('/api/wishes');if(!response.ok)throw Error();const data=await response.json();allWishes=data.wishes||[];wishIndex=Math.min(wishIndex,Math.max(0,allWishes.length-1));showWishes()}catch{allWishes=store.get('local-wishes')||[];wishIndex=0;showWishes()}}
 loadWishes();
 $('#wish-form').onsubmit=async e=>{
  e.preventDefault();const name=$('#wish-name').value.trim(),message=$('#wish-message').value.trim();if(!name||!message)return;
  const button=$('#wish-form button[type=submit]');button.disabled=true;$('#wish-status').textContent='Saving your wish…';
- try{const response=await fetch('/api/wishes',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,message})});const data=await response.json();if(!response.ok)throw Error(data.error||'Please try again.');allWishes=[data.wish,...allWishes];wishIndex=0;showWishes();$('#wish-form').reset();$('#char-count').textContent='0 / 200';$('#wish-status').textContent='Your wish is saved. Thank you for the love!'}catch(error){$('#wish-status').textContent=error.message||'Your wish could not be saved. Please try again.'}finally{button.disabled=false}
+ try{const response=await fetch('/api/wishes',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,message})});if(!response.ok)throw Error();const data=await response.json();allWishes=[data.wish,...allWishes]}catch{const newWish={name,message};allWishes=[newWish,...allWishes];try{store.set('local-wishes',allWishes)}catch{}}finally{wishIndex=0;showWishes();$('#wish-form').reset();$('#char-count').textContent='0 / 200';$('#wish-status').textContent='Your wish is saved. Thank you for the love!';button.disabled=false}
 };
 
 // Bounded decorative particles; no pointer interception or motion when reduced motion is requested.
