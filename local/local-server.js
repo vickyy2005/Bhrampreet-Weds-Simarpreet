@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.env.PORT || 8000;
-const ROOT = __dirname;
-const WISHES_FILE = path.join(ROOT, 'wishes.json');
+const ROOT = path.join(__dirname, '..');
+const WISHES_FILE = path.join(__dirname, 'wishes.json');
 
 if (!fs.existsSync(WISHES_FILE)) {
   fs.writeFileSync(WISHES_FILE, JSON.stringify({ wishes: [] }, null, 2));

@@ -90,10 +90,12 @@ class WeddingInvitationHandler(http.server.SimpleHTTPRequestHandler):
             self.end_headers()
 
 if __name__ == "__main__":
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    os.chdir(PROJECT_ROOT)
     socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("", PORT), WeddingInvitationHandler) as httpd:
         print(f"Server started at http://localhost:{PORT}")
+        print("Serving files from:", PROJECT_ROOT)
         print("Press Ctrl+C to stop.")
         try:
             httpd.serve_forever()
