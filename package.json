@@ -1,0 +1,17 @@
+{
+  "name": "punjab-da-invitatio",
+  "version": "1.0.0",
+  "description": "Wedding Invitation - Arshdeep & Dilmeet",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": [
+    "wedding",
+    "invitation",
+    "punjabi-wedding"
+  ],
+  "author": "",
+  "license": "ISC"
+}
